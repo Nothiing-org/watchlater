@@ -1,0 +1,5 @@
+{
+  "name": "WatchLater",
+  "description": "A clean, private library for saving and organizing YouTube videos you want to watch later.",
+  "requestFramePermissions": []
+}

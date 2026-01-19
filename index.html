@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>llumina — Watch Later</title>
+  <link rel="icon" type="image/png" sizes="180x180" href="https://i.imgur.com/4pZfxkf.png">
+  <link rel="shortcut icon" href="https://i.imgur.com/4pZfxkf.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            llumina: {
+              bg: '#FFFFFF',
+              accent: '#000000',
+              secondary: '#71717A',
+              border: '#F0F0F0',
+              input: '#F8F8F8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: revealAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes revealAnim {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .premium-card {
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .premium-card:hover {
+      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+    .llumina-input {
+      background-color: #f8f8f8;
+      border: 1px solid #f0f0f0;
+      border-radius: 18px;
+      transition: all 0.3s ease;
+    }
+    .llumina-input:focus {
+      background-color: #ffffff;
+      border-color: #000000;
+      outline: none;
+    }
+    .tight-heading {
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+    .label-wide {
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
