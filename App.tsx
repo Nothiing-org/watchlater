@@ -1,14 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import AddVideoForm from './components/AddVideoForm';
-import VideoCard from './components/VideoCard';
-import { storageService } from './services/storageService';
-import { geminiService } from './services/geminiService';
-import { Video, VideoStatus, AppState } from './types';
+import { html } from 'htm/react';
+import Header from './components/Header.js';
+import AddVideoForm from './components/AddVideoForm.js';
+import VideoCard from './components/VideoCard.js';
+import { storageService } from './services/storageService.js';
+import { geminiService } from './services/geminiService.js';
+import { VideoStatus } from './types.js';
 
-const App: React.FC = () => {
-  const [state, setState] = useState<AppState>({
+const App = () => {
+  const [state, setState] = useState({
     videos: [],
     isLoading: false,
     error: null,
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     setState(prev => ({ ...prev, videos: savedVideos }));
   }, []);
 
-  const handleAddVideo = async (url: string) => {
+  const handleAddVideo = async (url) => {
     const youtubeId = url.match(/(?:v=|\/embed\/|\/watch\?v=|\/\d+\/|\/vi\/|youtu\.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/)?.[1];
     if (!youtubeId) throw new Error('Source Invalid');
 
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
     try {
       const metadata = await geminiService.fetchVideoMetadata(url);
-      const newVideo: Video = {
+      const newVideo = {
         id: crypto.randomUUID(),
         youtubeId,
         url,
@@ -50,53 +50,51 @@ const App: React.FC = () => {
     }
   };
 
-  const handleRemoveVideo = (id: string) => {
+  const handleRemoveVideo = (id) => {
     const updatedVideos = state.videos.filter(v => v.id !== id);
     storageService.saveVideos(updatedVideos);
     setState(prev => ({ ...prev, videos: updatedVideos }));
   };
 
-  return (
+  return html`
     <div className="min-h-screen selection:bg-black selection:text-white pb-20">
-      <Header />
+      <${Header} />
       
       <main className="max-w-7xl mx-auto px-6">
-        {/* Focus Section */}
         <section className="py-20 text-center max-w-3xl mx-auto">
           <h1 className="tight-heading text-6xl md:text-8xl font-extrabold mb-10 reveal">
             Signal,<br /><span className="text-zinc-200">not noise.</span>
           </h1>
-          <p className="text-sm font-bold label-wide text-zinc-500 mb-12 reveal" style={{ animationDelay: '0.05s' }}>
+          <p className="text-sm font-bold label-wide text-zinc-500 mb-12 reveal" style=${{ animationDelay: '0.05s' }}>
             Curate your intelligence
           </p>
-          <AddVideoForm onAdd={handleAddVideo} isLoading={state.isLoading} />
+          <${AddVideoForm} onAdd=${handleAddVideo} isLoading=${state.isLoading} />
         </section>
 
-        {/* Intelligence Library */}
         <section className="mt-20">
-          <div className="flex items-center gap-4 mb-12 reveal" style={{ animationDelay: '0.15s' }}>
+          <div className="flex items-center gap-4 mb-12 reveal" style=${{ animationDelay: '0.15s' }}>
             <h2 className="text-xs font-bold label-wide">Captured Library</h2>
             <div className="h-px flex-1 bg-zinc-100"></div>
-            <span className="text-xs font-bold label-wide text-zinc-400">{state.videos.length} Units</span>
+            <span className="text-xs font-bold label-wide text-zinc-400">${state.videos.length} Units</span>
           </div>
 
-          {state.videos.length === 0 ? (
-            <div className="premium-card p-20 flex flex-col items-center justify-center reveal" style={{ animationDelay: '0.2s' }}>
+          ${state.videos.length === 0 ? html`
+            <div className="premium-card p-20 flex flex-col items-center justify-center reveal" style=${{ animationDelay: '0.2s' }}>
               <div className="h-1.5 w-1.5 bg-zinc-200 rounded-full mb-8"></div>
               <p className="text-xs font-bold label-wide text-zinc-400">System Standby. No Signals Found.</p>
             </div>
-          ) : (
+          ` : html`
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {state.videos.map((video, idx) => (
-                <VideoCard 
-                  key={video.id} 
-                  video={video} 
-                  index={idx}
-                  onRemove={handleRemoveVideo} 
+              ${state.videos.map((video, idx) => html`
+                <${VideoCard} 
+                  key=${video.id} 
+                  video=${video} 
+                  index=${idx}
+                  onRemove=${handleRemoveVideo} 
                 />
-              ))}
+              `)}
             </div>
-          )}
+          `}
         </section>
       </main>
 
@@ -110,7 +108,7 @@ const App: React.FC = () => {
         </p>
       </footer>
     </div>
-  );
+  `;
 };
 
 export default App;

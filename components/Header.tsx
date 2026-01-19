@@ -1,8 +1,8 @@
-
 import React from 'react';
+import { html } from 'htm/react';
 
-const Header: React.FC = () => {
-  return (
+const Header = () => {
+  return html`
     <header className="py-10 px-6 max-w-7xl mx-auto flex justify-between items-center reveal">
       <div className="flex items-center gap-2 group cursor-pointer">
         <div className="h-2 w-2 bg-black rounded-full group-hover:scale-125 transition-transform"></div>
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
         Personal Signal Library
       </div>
     </header>
-  );
+  `;
 };
 
 export default Header;
