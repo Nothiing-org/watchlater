@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command = "# No build command needed if using raw ESM, otherwise 'npm run build'"
+  command = "# No build command needed for this ESM architecture"
 
 [[redirects]]
   from = "/*"
