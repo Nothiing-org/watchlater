@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  command = "# No build command needed if using raw ESM, otherwise 'npm run build'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
