@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { html } from 'htm/react';
-import Header from './components/Header.js';
-import AddVideoForm from './components/AddVideoForm.js';
-import VideoCard from './components/VideoCard.js';
-import { storageService } from './services/storageService.js';
-import { geminiService } from './services/geminiService.js';
-import { VideoStatus } from './types.js';
+import Header from './components/Header.tsx';
+import AddVideoForm from './components/AddVideoForm.tsx';
+import VideoCard from './components/VideoCard.tsx';
+import { storageService } from './services/storageService.ts';
+import { geminiService } from './services/geminiService.ts';
+import { VideoStatus } from './types.ts';
 
 const App = () => {
   const [state, setState] = useState({

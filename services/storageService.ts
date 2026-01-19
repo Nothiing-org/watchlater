@@ -1,5 +1,4 @@
-
-import { Video } from '../types';
+import { Video } from '../types.ts';
 
 const STORAGE_KEY = 'watchlater_videos_v1';
 
