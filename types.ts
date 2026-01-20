@@ -1,4 +1,3 @@
-
 export enum VideoStatus {
   UNWATCHED = 'unwatched',
   WATCHING = 'watching',
@@ -11,21 +10,34 @@ export interface VideoMetadata {
   thumbnailUrl: string;
   duration?: string;
   publishedAt?: string;
+  isMusic?: boolean;
+  category?: string;
+  summary?: string;
+  tags?: string[];
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  icon: string;
 }
 
 export interface Video {
-  id: string; // Internal unique ID
-  youtubeId: string; // The v=... ID
+  id: string;
+  youtubeId: string;
   url: string;
   metadata: VideoMetadata;
   status: VideoStatus;
   addedAt: number;
-  // Extensible for future features like folders, tags, notes
-  customData?: Record<string, any>;
+  collectionId?: string;
 }
 
 export interface AppState {
   videos: Video[];
+  collections: Collection[];
   isLoading: boolean;
   error: string | null;
+  activeView: 'library' | 'dashboard' | 'discover';
+  activeCollectionId: string | null;
+  searchQuery: string;
 }

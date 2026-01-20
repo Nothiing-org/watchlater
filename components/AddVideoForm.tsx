@@ -11,7 +11,8 @@ const AddVideoForm = ({ onAdd, isLoading }) => {
     
     if (!url.trim()) return;
     
-    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+    // Updated regex to include music.youtube.com
+    const pattern = /^(https?:\/\/)?((www|music)\.)?(youtube\.com|youtu\.?be)\/.+$/;
     if (!pattern.test(url)) {
       setError('Invalid Signal Source');
       return;
@@ -33,7 +34,7 @@ const AddVideoForm = ({ onAdd, isLoading }) => {
             type="text"
             value=${url}
             onInput=${(e) => setUrl(e.target.value)}
-            placeholder="Input YouTube link..."
+            placeholder="Input YouTube or YT Music link..."
             className="llumina-input w-full px-6 py-5 text-sm font-medium focus:ring-0"
             disabled=${isLoading}
           />
@@ -42,7 +43,7 @@ const AddVideoForm = ({ onAdd, isLoading }) => {
         <button
           type="submit"
           disabled=${isLoading || !url.trim()}
-          className="bg-black text-white rounded-2xl px-10 py-5 font-bold text-sm hover:bg-zinc-800 transition-all active:scale-95 disabled:bg-zinc-200"
+          className="bg-black text-white rounded-2xl px-10 py-5 font-bold text-sm hover:bg-zinc-800 transition-all active:scale-95 disabled:bg-zinc-200 whitespace-nowrap"
         >
           ${isLoading ? 'ANALYZING...' : 'SAVE SIGNAL'}
         </button>

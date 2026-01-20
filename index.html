@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>llumina — Watch Later</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/4pZfxkf.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/4pZfxkf.png">
   <link rel="icon" type="image/png" sizes="180x180" href="https://i.imgur.com/4pZfxkf.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/4pZfxkf.png">
   <link rel="shortcut icon" href="https://i.imgur.com/4pZfxkf.png">
+
+  <!-- YouTube Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script>
-    // Critical: Shim process.env for browser compatibility in no-build environments
     window.process = { env: { API_KEY: '' } };
     
     tailwind.config = {
@@ -79,6 +87,10 @@
     .label-wide {
       letter-spacing: 0.2em;
       text-transform: uppercase;
+    }
+    .modal-backdrop {
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
     }
   </style>
 <script type="importmap">
