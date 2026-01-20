@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "build": "echo 'Static ESM site: No build step required'"
+  },
   "dependencies": {
     "react": "19.0.0",
     "react-dom": "19.0.0",
